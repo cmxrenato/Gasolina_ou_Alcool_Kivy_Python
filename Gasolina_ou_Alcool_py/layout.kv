@@ -1,0 +1,161 @@
+#:import utils kivy.utils
+#:import Factory kivy.factory.Factory
+<MyPopup@Popup>
+	auto_dismiss:False
+	title: "Como o cálculo é feito:"
+	size_hint:(1,.5)
+
+
+	FloatLayout:
+		Label:
+			text: "O cálculo médio é feito a partir do preço\n e do rendimento de cada combustível.\n Portanto, para o etanol ser mais vantajoso\n ele deve custar no máximo 70% do preço\n da gasolina, pois ele tem menor rendimento."
+			font_size: 18
+			pos_hint:{"center_x":0.5,"y":0.2}
+		Button:
+			text:"Fechar"
+			font_size:14
+			on_release:root.dismiss()
+			size_hint:(.5,.2)
+			pos_hint:{"center_x":0.5,"y":0.1}
+<MyLayout>
+
+# UMA FORMA DE MUDAR A COR DO BACKGROUND
+	canvas.before:
+		Color:
+			rgba: (0,0,0,1)
+		Rectangle:
+			size:self.size
+			pos:self.pos
+
+
+	FloatLayout:
+		orientation: "vertical"
+		size: root.width, root.height
+		padding: 0
+		spacing: 20
+
+
+
+		Image:
+			source: 'img2.jpg'
+			allow_stretch: True
+			keep_ratio: True
+			pos_hint: {"x":0,"top":1}
+			size_hint: (1,.5)
+
+
+
+
+
+
+
+		ToggleButton:
+			id : toggle2
+			text:"Álcool"
+			font_size:18
+			group: "escolha"
+			on_press: root.on_state2()
+			size_hint:(None,None)
+			width:80
+			height: 60
+			pos_hint: {"x":0.59,"y":.4}
+
+
+		ToggleButton:
+			id : toggle1
+			text:"Gasolina"
+			font_size:18
+			group: "escolha"
+			#Se configura como se fosse um Button normal.
+			on_press: root.on_state1()
+			size_hint:(None,None)
+			width:80
+			height: 60
+			pos_hint: {"x":0.8,"y":.4}
+
+		Label:
+			pos_hint: {"x":0,"top":1}
+			text:"Digite o preço abaixo:"
+			font_size:20
+			color: (1,0,0,1)
+			bold: True
+			italic: True
+			outline_color: (0,0,0)
+			outline_width:2
+			size_hint:(0.2,0.26)
+			pos_hint: {"center_x":0.5,"y":0.24}
+		Label:
+			pos_hint: {"x":0,"top":1}
+			text:"Escolha o combustível: "
+			font_size:20
+			color: (1,0,0,1)
+			bold: True
+			italic: True
+			outline_color: (0,0,0)
+			outline_width:2
+			size_hint:(0.2,0.26)
+			pos_hint: {"x":0.2,"y":0.32}
+
+		TextInput:
+			id:preco
+			multiline: False
+			size_hint:(0.7,None)
+			height:40
+			pos_hint: {"center_x":0.5,"y":0.27}
+			hint_text: "Exemplo de preço: 1,52"
+			font_size:20
+
+
+
+
+		Button:
+
+			text:"Calcular"
+			font_size:20
+			on_press: root.botao_ok()
+			size_hint:(0.7,0.1)
+			#background_normal:""
+			background_color: (0,128/255,1,1)
+			pos_hint: {"center_x":0.5,"y":.15}
+
+		Button:
+			text:"Como funciona?\nClique Aqui!"
+			font_size:14
+			pos_hint:{"right":1,"top":1}
+			size_hint:(None,None)
+			height: 40
+			width: 120
+
+			on_release:Factory.MyPopup().open()
+			#background_color: (1,1,0,1)
+			#background_normal:""
+			#color:(0,0,0,1)
+			bold:True
+		Label:
+			text:"Desenvolvido por Renato Leal"
+			font_size:12
+
+			pos_hint:{"x":0.28,"y":-0.47}
+
+		TextInput:
+			id:resultado
+
+			size_hint:(1,None)
+			height: 60
+
+			pos_hint:{"x":0.0,"y":0.044}
+
+			font_size:18
+			multiline: True
+			hint_text: "Resultado:"
+
+
+
+
+#A FORMA DE MUDAR A COR DO LABEL
+				#canvas.before:
+					#Color:
+						#rgba:self.background_color
+					#Rectangle:
+					#	size:self.size
+					#	pos:self.pos
